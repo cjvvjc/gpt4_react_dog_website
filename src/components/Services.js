@@ -8,7 +8,7 @@ const Services = () => {
       <div className="row">
         {servicesData.map((service) => (
           <div key={service.id} className="col-md-6 col-lg-4">
-            <div className="card mb-4">
+            <div className="card mb-4 h-100">
               <div className="card-body">
                 <h5 className="card-title">{service.name}</h5>
                 <p className="card-text">{service.description}</p>
