@@ -1,28 +1,37 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { Navbar, Nav, Container } from 'react-bootstrap';
 
-const Navbar = () => {
+const CustomNavbar = () => {
+  const [isNavOpen, setIsNavOpen] = useState(false);
+
+  const handleNavToggle = () => {
+    setIsNavOpen(!isNavOpen);
+  };
+
   return (
-    <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
-      <Link to="/" className="navbar-brand">Shampoodle's Dog Grooming</Link>
-      <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span className="navbar-toggler-icon"></span>
-      </button>
-      <div className="collapse navbar-collapse" id="navbarNav">
-        <ul className="navbar-nav">
-          <li className="nav-item">
-            <Link to="/" className="nav-link">Home</Link>
-          </li>
-          <li className="nav-item">
-            <Link to="/about" className="nav-link">About Us</Link>
-          </li>
-          <li className="nav-item">
-            <Link to="/services" className="nav-link">Services</Link>
-          </li>
-        </ul>
-      </div>
-    </nav>
+    <Navbar expand="lg" bg="dark" variant="dark" collapseOnSelect>
+      <Container>
+        <Navbar.Brand as={Link} to="/" onClick={handleNavToggle}>
+          Dog Grooming Salon
+        </Navbar.Brand>
+        <Navbar.Toggle aria-controls="navbar-nav" onClick={handleNavToggle} />
+        <Navbar.Collapse id="navbar-nav" className={isNavOpen ? 'show' : ''}>
+          <Nav className="ml-auto">
+            <Nav.Link as={Link} to="/" onClick={handleNavToggle}>
+              Home
+            </Nav.Link>
+            <Nav.Link as={Link} to="/about" onClick={handleNavToggle}>
+              About Us
+            </Nav.Link>
+            <Nav.Link as={Link} to="/services" onClick={handleNavToggle}>
+              Services
+            </Nav.Link>
+          </Nav>
+        </Navbar.Collapse>
+      </Container>
+    </Navbar>
   );
 };
 
-export default Navbar;
+export default CustomNavbar;
